@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text;
 using IonicTestApp;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +19,27 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        };
+    });
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 app.Run();
