@@ -1,18 +1,24 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using System;
+using IonicTestApp;
+using Microsoft.EntityFrameworkCore;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddDbContext<ApplicationContext> (options =>
+    options.UseSqlite("Data Source=app.db"));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+    db.Database.Migrate();
+}
 
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
-
