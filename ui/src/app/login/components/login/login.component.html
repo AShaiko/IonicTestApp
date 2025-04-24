@@ -2,28 +2,26 @@
     isLoginActive: isLoginActive$ | async
 } as data">
     <div class="content">
-        <div class="content-form">
-            <div class="switcher">
-                <button
-                    mat-raised-button
-                    [color]="data.isLoginActive ? 'primary' : ''"
-                    (click)="toggleLoginState(true)">
-                    <span>Login</span>
-                </button>
-                <button
-                    mat-raised-button
-                    [color]="!data.isLoginActive ? 'primary' : ''"
-                    [class.active-button]="!data.isLoginActive"
-                    (click)="toggleLoginState(false)">
-                    <span>Registration</span>
-                </button>
-            </div>
-            
-            @if(data.isLoginActive){
-                <app-login-form></app-login-form>
-            } @else {
-                <app-registration-form></app-registration-form>
-            }
+        <div class="switcher">
+            <button
+                mat-raised-button
+                [color]="data.isLoginActive ? 'primary' : ''"
+                (click)="toggleLoginState(true)">
+                <span>Login</span>
+            </button>
+            <button
+                mat-raised-button
+                [color]="!data.isLoginActive ? 'primary' : ''"
+                [class.active-button]="!data.isLoginActive"
+                (click)="toggleLoginState(false)">
+                <span>Registration</span>
+            </button>
         </div>
+        
+        @if(data.isLoginActive){
+            <app-login-form></app-login-form>
+        } @else {
+            <app-registration-form></app-registration-form>
+        }
     </div>
 </ng-container>
