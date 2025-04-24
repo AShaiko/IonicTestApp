@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 @Injectable()
-export class CurrencyService {
+export class CurrencyApiService {
     private readonly API_URL = 'https://api.freecurrencyapi.com/v1/latest';
     private readonly API_KEY = 'fca_live_eZ8STbqO9aVsvFYV1JM0jLECB62epWbPuyf3IRte';
   

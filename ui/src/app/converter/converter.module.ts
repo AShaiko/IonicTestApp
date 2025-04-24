@@ -2,7 +2,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConverterRoutingModule } from './converter-routing.module';
 import { ConverterPageComponent } from './components/converter-page/converter-page.component';
-import { CurrencyService } from './services/currency-api.service';
+import { CurrencyApiService } from './services/currency-api.service';
 import { CurrencyState } from './store/currency.state';
 import { NgxsModule } from '@ngxs/store';
 
@@ -16,7 +16,7 @@ import { NgxsModule } from '@ngxs/store';
     NgxsModule.forFeature([CurrencyState]),
   ],
   providers: [
-    CurrencyService
+    CurrencyApiService
   ]
 })
 

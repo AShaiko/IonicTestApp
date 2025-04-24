@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
-import { State } from "@ngxs/store";
+import { Action, State, StateContext } from "@ngxs/store";
 import { CurrencyStateModel } from "./currency-state.model";
 import { CurrencyCode } from "../enums/currency-code.enum";
+import { CurrencyApiService } from "../services/currency-api.service";
+import { ConvertCurrency } from "./currency.actions";
+import { tap } from "rxjs";
 
 
 @State<CurrencyStateModel>({
@@ -16,4 +19,25 @@ import { CurrencyCode } from "../enums/currency-code.enum";
 })
 @Injectable()
 export class CurrencyState {
+    constructor(private currencyApiService: CurrencyApiService) {}
+
+    @Action(ConvertCurrency)
+    onConvertCurrency({ getState, patchState }: StateContext<CurrencyStateModel>, { from, to, amount }: ConvertCurrency) {
+        const state = getState();
+
+        return this.currencyApiService.getRates(from, [to])
+            .pipe(tap((data) => {
+                const rate: number = data.data[state.toCurrency];
+                const result = amount * rate;
+
+                patchState({
+                    fromCurrency: from,
+                    toCurrency: to,
+                    amount: amount,
+                    currentRate: rate,
+                    convertedAmount: result
+                });
+            })
+        );
+    }
 }
