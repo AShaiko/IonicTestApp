@@ -5,11 +5,14 @@
         <div class="content-form">
             <div class="switcher">
                 <button
-                    [class.active-button]="data.isLoginActive"
+                    mat-raised-button
+                    [color]="data.isLoginActive ? 'primary' : ''"
                     (click)="toggleLoginState(true)">
                     <span>Login</span>
                 </button>
                 <button
+                    mat-raised-button
+                    [color]="!data.isLoginActive ? 'primary' : ''"
                     [class.active-button]="!data.isLoginActive"
                     (click)="toggleLoginState(false)">
                     <span>Registration</span>
