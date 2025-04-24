@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Registration } from '../../../+shared/authorization/store/authorization.actions';
+import { Store } from '@ngxs/store';
+import { UserLoginModel } from '../../../models/user-login.model';
 
 @Component({
   selector: 'app-registration-form',
@@ -11,9 +14,15 @@ export class RegistrationFormComponent {
   password: string = '';
   confirmPassword: string = '';
 
+  constructor(private store: Store) {}
+
   onRegister() {
     if (this.username && this.password) {
-      console.log('Register in with', this.username, this.password);
+      const model = new UserLoginModel({
+        username: this.username,
+        password: this.password
+      });
+      this.store.dispatch(new Registration(model));
     }
   }
 }
