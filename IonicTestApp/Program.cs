@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using IonicTestApp;
+using IonicTestApp.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -10,14 +11,6 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationContext> (options =>
     options.UseSqlite("Data Source=app.db"));
-
-var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
-    db.Database.Migrate();
-}
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
@@ -35,11 +28,20 @@ builder.Services.AddAuthentication("Bearer")
         };
     });
 
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+    db.Database.Migrate();
+}
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
-builder.Services.AddScoped<IAuthService, AuthService>();
 
 app.Run();
