@@ -7,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
+  username: string = '';
+  password: string = '';
 
+  onLogin() {
+    if (this.username && this.password) {
+      console.log('Logging in with', this.username, this.password);
+    }
+  }
 }
