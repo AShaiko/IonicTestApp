@@ -1,0 +1,42 @@
+## .NET / ASP.NET Core
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+*.dll
+*.exe
+*.app
+*.log
+*.cache
+*.pdb
+*.mdb
+
+# SQLite database
+*.db
+*.db-shm
+*.db-wal
+
+# Rider / VS for Mac
+.idea/
+.vscode/
+*.userprefs
+
+# Visual Studio Code
+.vscode/
+.history/
+
+# VS for Mac logs
+*.pidb
+*.sln.metaproj
+
+# dotnet user secrets
+**/secrets.json
+
+# Others
+.env
+*.swp
+*~
