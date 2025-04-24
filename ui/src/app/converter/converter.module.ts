@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConverterRoutingModule } from './converter-routing.module';
 import { ConverterPageComponent } from './components/converter-page/converter-page.component';
 import { CurrencyService } from './services/currency-api.service';
+import { CurrencyState } from './store/currency.state';
+import { NgxsModule } from '@ngxs/store';
 
 @NgModule({
   declarations: [
@@ -10,10 +12,18 @@ import { CurrencyService } from './services/currency-api.service';
   ],
   imports: [
     CommonModule,
-    ConverterRoutingModule
+    ConverterRoutingModule,
+    NgxsModule.forFeature([CurrencyState]),
   ],
   providers: [
     CurrencyService
   ]
 })
-export class ConverterModule { }
+
+export class ConverterModule {
+  constructor(@Optional() @SkipSelf() parentModule: ConverterModule) {
+    if (parentModule) {
+        throw new Error('ConverterModule is already loaded');
+    }
+  }
+}
