@@ -40,6 +40,5 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         this.store.dispatch(new Navigate([APP_ROUTES.Сonverter]));
     });
-}
-
+  }
 }
