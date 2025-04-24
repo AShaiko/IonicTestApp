@@ -7,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './registration-form.component.scss'
 })
 export class RegistrationFormComponent {
+  username: string = '';
+  password: string = '';
+  confirmPassword: string = '';
 
+  onRegister() {
+    if (this.username && this.password) {
+      console.log('Register in with', this.username, this.password);
+    }
+  }
 }
