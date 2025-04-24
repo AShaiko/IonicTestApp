@@ -1,0 +1,39 @@
+:host {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  background: white;
+  padding:clamp(2px, 5vw, 60px);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+  gap: 40px;
+}
+
+.switcher {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+
+  button {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  @media (max-width: 320px) {
+    flex-direction: column;
+  }
+}

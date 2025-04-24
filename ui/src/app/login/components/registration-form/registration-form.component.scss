@@ -1,0 +1,21 @@
+:host {
+    display: flex;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    align-self: stretch;
+    width: 100%;
+
+    mat-form-field {
+        min-width: 300px;
+
+        @media (max-width: 320px) {
+        min-width: 0px;
+        }
+    }
+}

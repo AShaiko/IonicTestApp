@@ -1,4 +1,41 @@
-﻿<Properties StartupConfiguration="{43738B1D-B0DE-4FD9-B4EE-6DCADBF04293}|https">
+﻿<Properties StartupConfiguration="{43738B1D-B0DE-4FD9-B4EE-6DCADBF04293}|app">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AuthController.cs">
+    <Files>
+      <File FileName="IonicTestApp.http" Line="1" Column="1" />
+      <File FileName="Models/User.cs" Line="1" Column="1" />
+      <File FileName="Controllers/AuthController.cs" Line="22" Column="85" />
+      <File FileName="Services/IAuthService.cs" Line="7" Column="33" />
+      <File FileName="Services/AuthService.cs" Line="23" Column="38" />
+      <File FileName="Program.cs" Line="13" Column="42" />
+      <File FileName="appsettings.json" Line="3" Column="18" />
+      <File FileName="Properties/launchSettings.json" Line="1" Column="1" />
+      <File FileName="appsettings.Development.json" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="IonicTestApp">
+            <Node name="IonicTestApp">
+              <Node name="Controllers">
+                <Node name="AuthController.cs" selected="True" />
+              </Node>
+              <Node name="Migrations" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="DTOs" expanded="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.IonicTestApp FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.IonicTestApp PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
