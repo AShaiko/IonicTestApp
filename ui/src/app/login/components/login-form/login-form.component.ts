@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { UserLoginModel } from '../../../models/user-login.model';
+import { Login } from '../../../+shared/authorization/store/authorization.actions';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-login-form',
@@ -10,9 +13,15 @@ export class LoginFormComponent {
   username: string = '';
   password: string = '';
 
+  constructor(private store: Store) {}
+
   onLogin() {
     if (this.username && this.password) {
-      console.log('Logging in with', this.username, this.password);
+      const model = new UserLoginModel({
+        username: this.username,
+        password: this.password
+      });
+      this.store.dispatch(new Login(model));
     }
   }
 }
