@@ -21,6 +21,9 @@ public class AuthController : Controller
     [HttpPost("api/[controller]/Register")]
     public async Task<ActionResult<AuthResponse>> Register([FromBody] UserLoginModel model)
     {
+        if (string.IsNullOrWhiteSpace(model.Username) || string.IsNullOrWhiteSpace(model.Password))
+            return BadRequest("Username and password are required.");
+
         var result = await _authService.RegisterAsync(model);
         if (result == null)
             return BadRequest("User already exists.");
@@ -31,6 +34,9 @@ public class AuthController : Controller
     [HttpPost("api/[controller]/Login")]
     public async Task<ActionResult<AuthResponse>> Login([FromBody] UserLoginModel model)
     {
+        if (string.IsNullOrWhiteSpace(model.Username) || string.IsNullOrWhiteSpace(model.Password))
+            return BadRequest("Username and password are required.");
+
         var result = await _authService.LoginAsync(model);
         if (result == null)
             return Unauthorized("Invalid username or password.");
