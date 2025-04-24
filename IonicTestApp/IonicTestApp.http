@@ -1,7 +1,0 @@
-﻿@IonicTestApp_HostAddress = http://localhost:5284
-
-GET {{IonicTestApp_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
-

@@ -40,3 +40,5 @@ obj/
 .env
 *.swp
 *~
+
+wwwroot/*

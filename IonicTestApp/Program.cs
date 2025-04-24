@@ -3,6 +3,7 @@ using System.Text;
 using IonicTestApp;
 using IonicTestApp.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,10 +39,31 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
+app.UseHttpsRedirection();
+
+var browserPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "browser");
+
+app.UseDefaultFiles(new DefaultFilesOptions
+{
+    FileProvider = new PhysicalFileProvider(browserPath),
+    RequestPath = ""
+});
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(browserPath),
+    RequestPath = ""
+});
+
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapFallbackToFile("index.html", new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(browserPath)
+});
 
 app.Run();
