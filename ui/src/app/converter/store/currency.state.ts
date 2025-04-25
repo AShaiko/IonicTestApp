@@ -4,7 +4,7 @@ import { CurrencyStateModel } from "./currency-state.model";
 import { CurrencyCode } from "../enums/currency-code.enum";
 import { CurrencyApiService } from "../services/currency-api.service";
 import { ConvertCurrency } from "./currency.actions";
-import { tap } from "rxjs";
+import { filter, tap } from "rxjs";
 import { TransactionModel } from "../../models/transaction.model";
 
 
@@ -43,27 +43,29 @@ export class CurrencyState {
         const state = getState();
 
         return this.currencyApiService.getRates(from, [to])
-            .pipe(tap((data) => {
-                const rate: number = data.data[state.toCurrency];
-                const result = amount * rate;
-                const transaction: TransactionModel = {
-                    timestamp: new Date(),
-                    amount: amount,
-                    from: from,
-                    to: to,
-                    rate: rate,
-                    result: result
-                };
+            .pipe(
+                filter(data => !!data && !!data.data[to]),
+                tap((data) => {
+                    const rate: number = data.data[to];
+                    const result = amount * rate;
+                    const transaction: TransactionModel = {
+                        timestamp: new Date(),
+                        amount: amount,
+                        from: from,
+                        to: to,
+                        rate: rate,
+                        result: result
+                    };
 
-                patchState({
-                    fromCurrency: from,
-                    toCurrency: to,
-                    amount: amount,
-                    currentRate: rate,
-                    convertedAmount: result,
-                    history: [transaction, ...state.history]
-                });
-            })
+                    patchState({
+                        fromCurrency: from,
+                        toCurrency: to,
+                        amount: amount,
+                        currentRate: rate,
+                        convertedAmount: result,
+                        history: [transaction, ...state.history]
+                    });
+                })
         );
     }
 }
