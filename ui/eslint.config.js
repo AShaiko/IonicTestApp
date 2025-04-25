@@ -16,6 +16,7 @@ module.exports = tseslint.config(
     rules: {
       "@typescript-eslint/no-explicit-any": ["off"],
       "@typescript-eslint/no-empty-function": ["off"],
+      "@angular-eslint/prefer-standalone": ["off"],
       "@angular-eslint/directive-selector": [
         "error",
         {
