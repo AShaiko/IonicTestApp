@@ -1,53 +1,67 @@
-<div class="converter">
-    <mat-form-field>
-        <mat-label>Amount</mat-label>
-        <input
-            matInput
-            type="number"
-            [(ngModel)]="amount"
-            name="amount"
-            #amountField="ngModel"
-            required
-            min="0"
-            maxlength="10"
-            pattern="^[0-9]{1,10}$"/>
-        <mat-error *ngIf="amountField.errors?.['required']">Amount is required</mat-error>
-        <mat-error *ngIf="amountField.errors?.['pattern']">
-            Only digits allowed, max 10
-        </mat-error>
-    </mat-form-field>
+<ion-header>
+    <ion-toolbar>
+        <ion-back-button slot="start" defaultHref="/login"></ion-back-button>
+        <ion-title slot="start">
+            Currency Converter
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-img src="../../../../assets/logo.png" alt="Logo" style="width: 35px; height: 35px;"></ion-img>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
 
-    <mat-form-field>
-        <mat-label>From</mat-label>
-        <mat-select [(ngModel)]="fromCurrency">
-            <mat-option *ngFor="let code of currencyList" [value]="code">
-                {{ code }} - {{ currencyNames[code] }}
-              </mat-option>
-        </mat-select>
-    </mat-form-field>
+<div class="page">
+    <div class="converter">
+        <mat-form-field>
+            <mat-label>Amount</mat-label>
+            <input
+                matInput
+                type="number"
+                [(ngModel)]="amount"
+                name="amount"
+                #amountField="ngModel"
+                required
+                min="0"
+                maxlength="10"
+                pattern="^[0-9]{1,10}$"/>
+            <mat-error *ngIf="amountField.errors?.['required']">Amount is required</mat-error>
+            <mat-error *ngIf="amountField.errors?.['pattern']">
+                Only digits allowed, max 10
+            </mat-error>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>To</mat-label>
-        <mat-select [(ngModel)]="toCurrency">
-            <mat-option *ngFor="let code of currencyList" [value]="code">
-                {{ code }} - {{ currencyNames[code] }}
-              </mat-option>
-        </mat-select>
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>From</mat-label>
+            <mat-select [(ngModel)]="fromCurrency">
+                <mat-option *ngFor="let code of currencyList" [value]="code">
+                    {{ code }} - {{ currencyNames[code] }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
-    <button
-        mat-raised-button
-        color="primary"
-        (click)="onConvert()"
-        [disabled]="amountField.invalid">
-        Convert
-    </button>
+        <mat-form-field>
+            <mat-label>To</mat-label>
+            <mat-select [(ngModel)]="toCurrency">
+                <mat-option *ngFor="let code of currencyList" [value]="code">
+                    {{ code }} - {{ currencyNames[code] }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
-    <div *ngIf="convertedAmount$ | async as result" class="result">
-        <p>Result: {{ result | number: '1.2-2' }} </p>
+        <button
+            mat-raised-button
+            color="primary"
+            (click)="onConvert()"
+            [disabled]="amountField.invalid">
+            Convert
+        </button>
+
+        <div *ngIf="convertedAmount$ | async as result" class="result">
+            <p>Result: {{ result | number: '1.2-2' }} </p>
+        </div>
     </div>
-</div>
 
-<app-transaction-history 
-    *ngIf="isHistoryExist$ | async as exist">
-</app-transaction-history>  
+    <app-transaction-history 
+        *ngIf="isHistoryExist$ | async as exist">
+    </app-transaction-history>  
+</div>

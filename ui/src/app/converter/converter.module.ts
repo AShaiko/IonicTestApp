@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { TransactionHistoryComponent } from './components/transaction-history/transaction-history.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TransactionHistoryComponent } from './components/transaction-history/tr
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    IonicModule.forRoot()
   ],
   providers: [
     CurrencyApiService

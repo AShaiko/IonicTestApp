@@ -18,6 +18,7 @@
     <Folder Include="Models\" />
     <Folder Include="Models\DTOs\" />
     <Folder Include="Services\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.15" />
@@ -27,5 +28,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.15" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
   </ItemGroup>
 </Project>

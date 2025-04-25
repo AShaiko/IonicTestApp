@@ -4,6 +4,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { SetCurrentUser } from '../../../+shared/authorization/store/authorization.actions';
 import { APP_ROUTES } from '../../../+shared/constants/app-routes.const';
 import { Navigate } from '@ngxs/router-plugin';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +18,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
   
-  constructor(private actions$: Actions, private store: Store) {
-  }
+  constructor(
+    private actions$: Actions,
+    private store: Store,
+    private navCtrl: NavController) { }
 
   ngOnInit(): void {
     this.subscriptions.push(this.actionsSubscription());
@@ -38,7 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             return;
         }
 
-        this.store.dispatch(new Navigate([APP_ROUTES.Сonverter]));
+        this.navCtrl.navigateForward(APP_ROUTES.Сonverter);
     });
   }
 }

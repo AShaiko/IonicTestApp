@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
     LoginRoutingModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    IonicModule.forRoot()
   ]
 })
 export class LoginModule { }

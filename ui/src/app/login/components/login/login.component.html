@@ -1,27 +1,40 @@
 <ng-container *ngIf="{
     isLoginActive: isLoginActive$ | async
 } as data">
-    <div class="content">
-        <div class="switcher">
-            <button
-                mat-raised-button
-                [color]="data.isLoginActive ? 'primary' : ''"
-                (click)="toggleLoginState(true)">
-                <span>Login</span>
-            </button>
-            <button
-                mat-raised-button
-                [color]="!data.isLoginActive ? 'primary' : ''"
-                [class.active-button]="!data.isLoginActive"
-                (click)="toggleLoginState(false)">
-                <span>Registration</span>
-            </button>
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>
+                Login Page
+            </ion-title>
+            <ion-buttons slot="end">
+                <ion-img src="../../../../assets/logo.png" alt="Logo" style="width: 35px; height: 35px;"></ion-img>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+
+    <div class="page">
+        <div class="content">
+            <div class="switcher">
+                <button
+                    mat-raised-button
+                    [color]="data.isLoginActive ? 'primary' : ''"
+                    (click)="toggleLoginState(true)">
+                    <span>Login</span>
+                </button>
+                <button
+                    mat-raised-button
+                    [color]="!data.isLoginActive ? 'primary' : ''"
+                    [class.active-button]="!data.isLoginActive"
+                    (click)="toggleLoginState(false)">
+                    <span>Registration</span>
+                </button>
+            </div>
+            
+            @if(data.isLoginActive){
+                <app-login-form></app-login-form>
+            } @else {
+                <app-registration-form></app-registration-form>
+            }
         </div>
-        
-        @if(data.isLoginActive){
-            <app-login-form></app-login-form>
-        } @else {
-            <app-registration-form></app-registration-form>
-        }
     </div>
 </ng-container>
