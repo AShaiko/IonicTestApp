@@ -10,7 +10,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { AuthorizationModule } from "../+shared/authorization/authorization.module";
 import { HttpClientModule } from "@angular/common/http";
-
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import { HttpClientModule } from "@angular/common/http";
     AppRoutingModule,
     BrowserModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicModule.forRoot()
   ],
   providers: [
     provideAnimationsAsync()
