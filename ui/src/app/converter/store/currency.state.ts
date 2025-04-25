@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Action, State, StateContext } from "@ngxs/store";
+import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { CurrencyStateModel } from "./currency-state.model";
 import { CurrencyCode } from "../enums/currency-code.enum";
 import { CurrencyApiService } from "../services/currency-api.service";
@@ -19,6 +19,11 @@ import { tap } from "rxjs";
 })
 @Injectable()
 export class CurrencyState {
+    @Selector()
+    static convertedAmount(state: CurrencyStateModel): number | null {
+        return state.convertedAmount;
+    }
+    
     constructor(private currencyApiService: CurrencyApiService) {}
 
     @Action(ConvertCurrency)

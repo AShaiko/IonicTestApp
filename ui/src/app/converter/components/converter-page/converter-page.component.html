@@ -1,1 +1,31 @@
-<p>converter-page works!</p>
+<div class="converter">
+    <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" [(ngModel)]="amount" />
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>From</mat-label>
+        <mat-select [(ngModel)]="fromCurrency">
+            <mat-option *ngFor="let code of currencyList" [value]="code">
+                {{ code }} - {{ currencyNames[code] }}
+              </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>To</mat-label>
+        <mat-select [(ngModel)]="toCurrency">
+            <mat-option *ngFor="let code of currencyList" [value]="code">
+                {{ code }} - {{ currencyNames[code] }}
+              </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="onConvert()">Convert</button>
+
+    <div *ngIf="convertedAmount$ | async as result" class="result">
+        <p>Result: {{ result | number: '1.2-2' }} </p>
+    </div>
+</div>
+  
