@@ -52,7 +52,7 @@ Database: SQLite
 
     dotnet ef database update
 
-After first run the local sqlite database will be created
+After first run the local sqlite database will be created on the path IonicTestApp/app.db.
 
 6. Run the project. It can be run by VisualStudio or command:  dotnet build
 
