@@ -10,10 +10,53 @@ All navigation need to be done in ionic.
 To create a currency page implement some popular HTML/CSS framework like Bootstrap, Bulma, Material.
 Page need to be responsive and to look nice on mobile device also.
 
-## Solution
+## Technologies
 
-The project consists of two parts: Backend and Frontend.
+**Frontend**:
+Angular CLI: 19.2.9
+Node: 20.17.0
+npm 10.8.2,
+Angular Material,
+TypeScript,
+SCSS,
+Ionic
+**Backend**:
+.NET 8,
+ASP.NET Core Web API,
+Entity Framework Core
+Database: SQLite
+**Currency Conversion API**:
+[FreeCurrencyAPI](https://app.freecurrencyapi.com/)
 
-Backend part implemented by using .NET 8.
-Using frameworks: ASP.NET Core Web API and Entity Framework Core.
-Using Database: SQLite.
+## Run the project
+
+### Frontend
+
+1. Navigate to the frontend directory:
+
+    cd ui
+
+2. Install necessary dependencies:
+
+    npm i
+
+3. Build the Angular project. The app will be generated in necessary backend folder:
+
+    npm run build
+
+### Backend
+
+4. Open solution IonicTestApp/IonicTestApp.sln by VisualStudio
+
+5. Run the database migrations:
+
+    dotnet ef database update
+
+After first run the local sqlite database will be created
+
+6. Run the project. It can be run by VisualStudio or command:  dotnet build
+
+
+The application will be opened by https://localhost:5001/#/login adress. 
+
+This information is actual on April, 2025.
