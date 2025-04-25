@@ -6,7 +6,6 @@ import { Store } from '@ngxs/store';
 @Component({
   standalone: false,
   selector: 'app-login-form',
-  
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })

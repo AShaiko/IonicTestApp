@@ -8,7 +8,6 @@ import { NavController } from '@ionic/angular';
 @Component({
   standalone: false,
   selector: 'app-login',
-  
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
