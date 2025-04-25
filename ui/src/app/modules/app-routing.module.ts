@@ -7,6 +7,10 @@ const routes: Routes = [
     path: APP_ROUTES.Login,
     loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
   },
+  {
+    path: APP_ROUTES.Сonverter,
+    loadChildren: () => import('../converter/converter.module').then(m => m.ConverterModule)
+  },
   { path: '**', redirectTo: APP_ROUTES.Login }
 ];
 

@@ -1,0 +1,12 @@
+<h2>List of results</h2>
+
+<mat-list>
+    @for (item of history$ | async; track item) {
+        <mat-list-item>
+            <div class="item-content">
+                <b>{{ item.amount }}</b> {{ item.from }} → <b>{{ item.result | number: '1.2-2' }}</b> {{ item.to }}
+                | Rate: {{ item.rate | number: '1.4-4' }}
+            </div>
+        </mat-list-item>
+    }
+</mat-list>
