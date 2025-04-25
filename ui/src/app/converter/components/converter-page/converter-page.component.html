@@ -28,4 +28,7 @@
         <p>Result: {{ result | number: '1.2-2' }} </p>
     </div>
 </div>
-  
+
+<app-transaction-history 
+    *ngIf="isHistoryExist$ | async as exist">
+</app-transaction-history>  

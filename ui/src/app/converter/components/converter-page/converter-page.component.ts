@@ -13,6 +13,7 @@ import { CurrencyState } from '../../store/currency.state';
 })
 export class ConverterPageComponent {
   convertedAmount$: Observable<number | null>;
+  isHistoryExist$: Observable<boolean>;
 
   amount: number = 1;
   fromCurrency: CurrencyCode = CurrencyCode.EUR;
@@ -23,6 +24,7 @@ export class ConverterPageComponent {
 
   constructor(private store: Store) {
     this.convertedAmount$ = this.store.select(CurrencyState.convertedAmount);
+    this.isHistoryExist$ = this.store.select(CurrencyState.isHistoryExist);
   }
 
   onConvert() {

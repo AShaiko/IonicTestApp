@@ -10,10 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { TransactionHistoryComponent } from './components/transaction-history/transaction-history.component';
 
 @NgModule({
   declarations: [
-    ConverterPageComponent
+    ConverterPageComponent,
+    TransactionHistoryComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
+    MatListModule
   ],
   providers: [
     CurrencyApiService

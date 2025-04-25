@@ -5,6 +5,7 @@ import { CurrencyCode } from "../enums/currency-code.enum";
 import { CurrencyApiService } from "../services/currency-api.service";
 import { ConvertCurrency } from "./currency.actions";
 import { tap } from "rxjs";
+import { TransactionModel } from "../../models/transaction.model";
 
 
 @State<CurrencyStateModel>({
@@ -14,7 +15,8 @@ import { tap } from "rxjs";
         fromCurrency: CurrencyCode.EUR,
         toCurrency: CurrencyCode.USD,
         currentRate: null,
-        convertedAmount: null
+        convertedAmount: null,
+        history: []
     }
 })
 @Injectable()
@@ -22,6 +24,16 @@ export class CurrencyState {
     @Selector()
     static convertedAmount(state: CurrencyStateModel): number | null {
         return state.convertedAmount;
+    }
+
+    @Selector()
+    static history(state: CurrencyStateModel): TransactionModel[] {
+        return state.history;
+    }
+
+    @Selector()
+    static isHistoryExist(state: CurrencyStateModel): boolean {
+        return state.history.length > 0;
     }
     
     constructor(private currencyApiService: CurrencyApiService) {}
@@ -34,13 +46,22 @@ export class CurrencyState {
             .pipe(tap((data) => {
                 const rate: number = data.data[state.toCurrency];
                 const result = amount * rate;
+                const transaction: TransactionModel = {
+                    timestamp: new Date(),
+                    amount: amount,
+                    from: from,
+                    to: to,
+                    rate: rate,
+                    result: result
+                };
 
                 patchState({
                     fromCurrency: from,
                     toCurrency: to,
                     amount: amount,
                     currentRate: rate,
-                    convertedAmount: result
+                    convertedAmount: result,
+                    history: [transaction, ...state.history]
                 });
             })
         );
