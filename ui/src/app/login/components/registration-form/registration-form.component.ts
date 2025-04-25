@@ -5,14 +5,14 @@ import { UserLoginModel } from '../../../models/user-login.model';
 
 @Component({
   selector: 'app-registration-form',
-  standalone: false,
+  
   templateUrl: './registration-form.component.html',
   styleUrl: './registration-form.component.scss'
 })
 export class RegistrationFormComponent {
-  username: string = '';
-  password: string = '';
-  confirmPassword: string = '';
+  username = '';
+  password = '';
+  confirmPassword = '';
 
   constructor(private store: Store) {}
 

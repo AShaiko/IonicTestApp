@@ -6,7 +6,7 @@ import { TransactionModel } from '../../../models/transaction.model';
 
 @Component({
   selector: 'app-transaction-history',
-  standalone: false,
+  
   templateUrl: './transaction-history.component.html',
   styleUrl: './transaction-history.component.scss'
 })

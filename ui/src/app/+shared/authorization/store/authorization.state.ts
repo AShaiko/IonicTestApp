@@ -53,7 +53,7 @@ export class AuthorizationState {
 
 
 	@Action(Registration)
-	onRegistration({ dispatch, patchState }: StateContext<AuthorizationStateModel>, { payload }: Registration): Observable<any> {
+	onRegistration({ dispatch }: StateContext<AuthorizationStateModel>, { payload }: Registration): Observable<any> {
 		return this.apiService.registration(payload).pipe(
 			tap((currentUser: UserModel) => {
 				dispatch([new SetCurrentUser(currentUser)]);
