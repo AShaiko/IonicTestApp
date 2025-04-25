@@ -5,6 +5,7 @@ import { CurrencyState } from '../../store/currency.state';
 import { TransactionModel } from '../../../models/transaction.model';
 
 @Component({
+  standalone: false,
   selector: 'app-transaction-history',
   
   templateUrl: './transaction-history.component.html',

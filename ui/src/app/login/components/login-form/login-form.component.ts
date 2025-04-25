@@ -4,6 +4,7 @@ import { Login } from '../../../+shared/authorization/store/authorization.action
 import { Store } from '@ngxs/store';
 
 @Component({
+  standalone: false,
   selector: 'app-login-form',
   
   templateUrl: './login-form.component.html',

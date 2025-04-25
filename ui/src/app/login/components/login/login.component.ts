@@ -6,6 +6,7 @@ import { APP_ROUTES } from '../../../+shared/constants/app-routes.const';
 import { NavController } from '@ionic/angular';
 
 @Component({
+  standalone: false,
   selector: 'app-login',
   
   templateUrl: './login.component.html',

@@ -4,6 +4,7 @@ import { Store } from '@ngxs/store';
 import { UserLoginModel } from '../../../models/user-login.model';
 
 @Component({
+  standalone: false,
   selector: 'app-registration-form',
   
   templateUrl: './registration-form.component.html',

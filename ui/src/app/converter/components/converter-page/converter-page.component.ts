@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { CurrencyState } from '../../store/currency.state';
 
 @Component({
+  standalone: false,
   selector: 'app-converter-page',
   
   templateUrl: './converter-page.component.html',
