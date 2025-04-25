@@ -4,14 +4,14 @@ import { Login } from '../../../+shared/authorization/store/authorization.action
 import { Store } from '@ngxs/store';
 
 @Component({
-  selector: 'app-login-form',
   standalone: false,
+  selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
-  username: string = '';
-  password: string = '';
+  username = '';
+  password = '';
 
   constructor(private store: Store) {}
 

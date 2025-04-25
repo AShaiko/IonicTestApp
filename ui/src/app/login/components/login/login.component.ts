@@ -3,12 +3,11 @@ import { Actions, ofActionSuccessful, Store } from '@ngxs/store';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { SetCurrentUser } from '../../../+shared/authorization/store/authorization.actions';
 import { APP_ROUTES } from '../../../+shared/constants/app-routes.const';
-import { Navigate } from '@ngxs/router-plugin';
 import { NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-login',
   standalone: false,
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

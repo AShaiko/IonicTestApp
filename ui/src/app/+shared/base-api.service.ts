@@ -20,6 +20,7 @@ export abstract class BaseApiService {
         if (response) {
             const isHttpError = response instanceof HttpErrorResponse;
             const message = isHttpError ? String(response.error?.message) || response.statusText : response;
+            console.warn(message);
         }
     }
 
@@ -60,7 +61,7 @@ export abstract class BaseApiService {
             headers: this.getHeaders()
         });
     }
-
+ 
     protected httpPost<T>(
         url: string,
         ctor: (value: any) => T,
@@ -79,6 +80,7 @@ export abstract class BaseApiService {
 
         return request.pipe(take(1));
     }
+ 
 
     protected httpPut<T>(
         url: string,
