@@ -10,19 +10,19 @@ import { APP_ROUTES } from '../../constants/app-routes.const';
 
 @Injectable()
 export class AuthUserResolver implements Resolve<UserModel> {
-    constructor(private store: Store, private router: Router) {}
+  constructor(private store: Store, private router: Router) {}
 
-    resolve(): Observable<UserModel> {
-        const user = this.store.selectSnapshot(AuthorizationState.currentUser);
-        return user
-            ? of(user)
-            : this.store.dispatch(new LoadCurrentUser()).pipe(
-                mergeMap(() => this.store.selectOnce(AuthorizationState.currentUser)),
-                filter((loadedUser): loadedUser is UserModel => !!loadedUser),
-                catchError((error) => {
-                    this.router.navigate([APP_ROUTES.Login]);
-                    throw error
-                })
-            );
-    }
+  resolve(): Observable<UserModel> {
+    const user = this.store.selectSnapshot(AuthorizationState.currentUser);
+    return user
+      ? of(user)
+      : this.store.dispatch(new LoadCurrentUser()).pipe(
+        mergeMap(() => this.store.selectOnce(AuthorizationState.currentUser)),
+        filter((loadedUser): loadedUser is UserModel => !!loadedUser),
+        catchError((error) => {
+          this.router.navigate([APP_ROUTES.Login]);
+          throw error
+        })
+      );
+  }
 }

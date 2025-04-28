@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private actionsSubscription(): Subscription {
     return this.actions$.pipe(ofActionSuccessful(SetCurrentUser)).subscribe(({ payload }: SetCurrentUser) => {
-        if (!payload || !payload.userId || !payload.username) {
-            return;
-        }
+      if (!payload || !payload.userId || !payload.username) {
+        return;
+      }
 
-        this.navCtrl.navigateForward(APP_ROUTES.Сonverter);
+      this.navCtrl.navigateForward(APP_ROUTES.Сonverter);
     });
   }
 }

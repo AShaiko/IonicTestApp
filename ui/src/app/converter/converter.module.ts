@@ -39,7 +39,7 @@ import { IonicModule } from '@ionic/angular';
 export class ConverterModule {
   constructor(@Optional() @SkipSelf() parentModule: ConverterModule) {
     if (parentModule) {
-        throw new Error('ConverterModule is already loaded');
+      throw new Error('ConverterModule is already loaded');
     }
   }
 }

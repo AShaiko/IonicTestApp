@@ -1,12 +1,12 @@
 export class UserLoginModel {
-    public username: string | undefined;
-    public password: string | undefined;
+  public username: string | undefined;
+  public password: string | undefined;
 
-    public constructor(
-        fields?: Partial<UserLoginModel>) {
+  public constructor(
+    fields?: Partial<UserLoginModel>) {
 
-        if (fields) {
-            Object.assign(this, fields);
-        }
+    if (fields) {
+      Object.assign(this, fields);
     }
+  }
 }
