@@ -3,10 +3,16 @@ import { NgxsModule } from '@ngxs/store';
 
 import { AuthorizationState } from './store/authorization.state';
 import { AuthorizationApiService } from './services/authorization-api.service';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthUserResolver } from './resolvers/auth-user.resolver';
 
 @NgModule({
     imports: [NgxsModule.forFeature([AuthorizationState])],
-    providers: [AuthorizationApiService]
+    providers: [
+        AuthGuard,
+        AuthUserResolver,
+        AuthorizationApiService
+    ]
 })
 export class AuthorizationModule {
     constructor(@Optional() @SkipSelf() parentModule: AuthorizationModule) {
