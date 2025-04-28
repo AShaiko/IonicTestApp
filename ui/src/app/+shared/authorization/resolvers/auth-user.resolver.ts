@@ -18,7 +18,11 @@ export class AuthUserResolver implements Resolve<UserModel> {
             ? of(user)
             : this.store.dispatch(new LoadCurrentUser()).pipe(
                 mergeMap(() => this.store.selectOnce(AuthorizationState.currentUser)),
-                filter((loadedUser): loadedUser is UserModel => !!loadedUser)
+                filter((loadedUser): loadedUser is UserModel => !!loadedUser),
+                catchError((error) => {
+                    this.router.navigate([APP_ROUTES.Login]);
+                    throw error
+                })
             );
     }
 }
