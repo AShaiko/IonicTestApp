@@ -33,11 +33,11 @@
             type="password"
             name="confirmPassword"
             [(ngModel)]="confirmPassword"
-            #passwordField="ngModel"
+            #confirmPasswordField="ngModel"
             required
             minlength="6"/>
-        <mat-error *ngIf="passwordField.errors?.['required']">Password is required</mat-error>
-        <mat-error *ngIf="passwordField.errors?.['minlength']">Minimum 6 characters</mat-error>
+        <mat-error *ngIf="confirmPasswordField.errors?.['required']">Password is required</mat-error>
+        <mat-error *ngIf="confirmPasswordField.errors?.['minlength']">Minimum 6 characters</mat-error>
         <mat-error *ngIf="password && confirmPassword && password !== confirmPassword">Passwords do not match</mat-error>
     </mat-form-field>
 
