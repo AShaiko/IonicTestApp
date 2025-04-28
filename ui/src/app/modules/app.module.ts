@@ -17,9 +17,9 @@ import { IonicModule } from '@ionic/angular';
   declarations: [AppComponent],
   imports: [
     NgxsModule.forRoot([], { developmentMode: true}),
-		NgxsRouterPluginModule.forRoot(),
-		NgxsLoggerPluginModule.forRoot({ logger: console, collapsed: false, disabled: false }),
-		NgxsReduxDevtoolsPluginModule.forRoot({ disabled: false }),
+    NgxsRouterPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot({ logger: console, collapsed: false, disabled: false }),
+    NgxsReduxDevtoolsPluginModule.forRoot({ disabled: false }),
 
     AuthorizationModule,
     AppRoutingModule,

@@ -10,7 +10,7 @@ describe('ConverterPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ConverterPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ConverterPageComponent);
     component = fixture.componentInstance;

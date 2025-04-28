@@ -10,7 +10,7 @@ describe('TransactionHistoryComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TransactionHistoryComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(TransactionHistoryComponent);
     component = fixture.componentInstance;

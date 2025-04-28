@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using IonicTestApp.Models.DTOs;
 using IonicTestApp.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IonicTestApp.Controllers;
 
@@ -12,10 +15,12 @@ namespace IonicTestApp.Controllers;
 public class AuthController : Controller
 {
     private readonly IAuthService _authService;
+    private readonly Func<ClaimsPrincipal> _claimsFunc;
 
-    public AuthController(IAuthService authService)
+    public AuthController(IAuthService authService, Func<ClaimsPrincipal> claimsFunc)
     {
         _authService = authService;
+        _claimsFunc = claimsFunc;
     }
 
     [HttpPost("api/[controller]/Register")]
@@ -42,6 +47,24 @@ public class AuthController : Controller
             return Unauthorized("Invalid username or password.");
 
         return Ok(result);
+    }
+
+    [Authorize]
+    [HttpGet("api/[controller]/CurrentUser")]
+    public async Task<ActionResult<AuthResponse>> GetCurrentUser()
+    {
+        var claims = GetClaims();
+        var result = await _authService.GetUserAsync(claims);
+
+        if (result == null)
+            return Unauthorized("Can no authorize user");
+
+        return Ok(result);
+    }
+
+    private ClaimsPrincipal GetClaims()
+    {
+        return _claimsFunc?.Invoke() ?? User;
     }
 }
 

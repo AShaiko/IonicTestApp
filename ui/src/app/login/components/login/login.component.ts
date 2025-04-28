@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Actions, ofActionSuccessful, Store } from '@ngxs/store';
+import { Actions, ofActionSuccessful } from '@ngxs/store';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { SetCurrentUser } from '../../../+shared/authorization/store/authorization.actions';
 import { APP_ROUTES } from '../../../+shared/constants/app-routes.const';
@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   
   constructor(
     private actions$: Actions,
-    private store: Store,
     private navCtrl: NavController) { }
 
   ngOnInit(): void {
@@ -36,11 +35,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private actionsSubscription(): Subscription {
     return this.actions$.pipe(ofActionSuccessful(SetCurrentUser)).subscribe(({ payload }: SetCurrentUser) => {
-        if (!payload || !payload.userId || !payload.username) {
-            return;
-        }
+      if (!payload || !payload.userId || !payload.username) {
+        return;
+      }
 
-        this.navCtrl.navigateForward(APP_ROUTES.Сonverter);
+      this.navCtrl.navigateForward(APP_ROUTES.Сonverter);
     });
   }
 }
