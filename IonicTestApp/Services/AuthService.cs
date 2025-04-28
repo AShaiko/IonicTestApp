@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Principal;
 
 namespace IonicTestApp.Services;
 
@@ -46,6 +47,20 @@ public class AuthService : IAuthService
             return null;
 
         return GenerateAuthResponse(existingUser);
+    }
+
+    public async Task<AuthResponse?> GetUserAsync(ClaimsPrincipal claims)
+    {
+        if (claims == null ||
+            claims.Identity == null ||
+            string.IsNullOrEmpty(claims.Identity.Name))
+        {
+            return null;
+        }
+
+        var user = await _context.Users.FirstOrDefaultAsync(us => us.Username == claims.Identity.Name);
+
+        return user != null ? GenerateAuthResponse(user) : null;
     }
 
     private AuthResponse GenerateAuthResponse(User user)

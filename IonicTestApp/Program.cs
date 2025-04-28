@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Text;
 using IonicTestApp;
 using IonicTestApp.Services;
@@ -29,7 +30,15 @@ builder.Services.AddAuthentication("Bearer")
         };
     });
 
+builder.Services.AddScoped<Func<ClaimsPrincipal>>(provider =>
+{
+    var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
+    return () => httpContextAccessor.HttpContext?.User ?? new ClaimsPrincipal();
+});
+
 builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
