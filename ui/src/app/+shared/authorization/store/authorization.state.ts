@@ -6,6 +6,7 @@ import { Observable, throwError } from 'rxjs';
 import { AuthorizationApiService } from '../services/authorization-api.service';
 import { AuthorizationStateModel } from './authorization.model';
 import {
+	LoadCurrentUser,
 	Login,
 	Registration,
 	SetCurrentUser} from './authorization.actions';
@@ -51,7 +52,6 @@ export class AuthorizationState {
 		);
 	}
 
-
 	@Action(Registration)
 	onRegistration({ dispatch }: StateContext<AuthorizationStateModel>, { payload }: Registration): Observable<any> {
 		return this.apiService.registration(payload).pipe(
@@ -60,6 +60,15 @@ export class AuthorizationState {
 			}),
 			catchError((error: any) => {
 				return throwError(() => error);
+			})
+		);
+	}
+
+	@Action(LoadCurrentUser)
+	onLoadCurrentUser({ dispatch }: StateContext<AuthorizationStateModel>): Observable<UserModel> {
+		return this.apiService.getCurrentUser().pipe(
+			tap((currentUser: UserModel) => {
+				dispatch([new SetCurrentUser(currentUser)]);
 			})
 		);
 	}

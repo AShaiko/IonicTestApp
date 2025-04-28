@@ -18,3 +18,7 @@ export class SetCurrentUser {
 
     constructor(public payload: UserModel | null) {}
 }
+
+export class LoadCurrentUser {
+    static readonly type = '[Authorization] Load current user';
+}

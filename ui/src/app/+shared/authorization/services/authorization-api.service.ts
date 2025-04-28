@@ -22,4 +22,8 @@ export class AuthorizationApiService extends BaseApiService {
     public registration(model: UserLoginModel): Observable<UserModel> {
         return this.httpPost(`Auth/Register`, x => new UserModel(x), model);
     }
+
+    public getCurrentUser(): Observable<UserModel> {
+        return this.httpGet(`Auth/CurrentUser`, x => new UserModel(x));
+    }
 }
