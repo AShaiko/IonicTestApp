@@ -6,6 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TransactionModel } from '@models/transaction.model';
 import { CommonModule } from '@angular/common';
+import { CurrencyCode } from '../../enums/currency-code.enum';
 
 describe('TransactionHistoryComponent', () => {
   let component: TransactionHistoryComponent;
@@ -15,16 +16,16 @@ describe('TransactionHistoryComponent', () => {
   const mockHistory: TransactionModel[] = [
     {
       amount: 100,
-      from: 'USD',
-      to: 'EUR',
+      from: CurrencyCode.EUR,
+      to: CurrencyCode.USD,
       result: 90,
       rate: 0.9,
       timestamp: new Date()
     },
     {
       amount: 200,
-      from: 'EUR',
-      to: 'GBP',
+      from: CurrencyCode.EUR,
+      to: CurrencyCode.GBP,
       result: 180,
       rate: 0.9,
       timestamp: new Date()
