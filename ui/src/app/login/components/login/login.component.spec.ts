@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
-import { Actions } from '@ngxs/store';
+import { ActionContext, Actions } from '@ngxs/store';
 import { NavController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -8,17 +8,17 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let actions$: Subject<any>;
+  let actionsMock: Subject<ActionContext>;
   let navCtrlSpy: jasmine.SpyObj<NavController>;
 
   beforeEach(async () => {
-    actions$ = new Subject();
+    actionsMock = new Subject<ActionContext>();
     navCtrlSpy = jasmine.createSpyObj('NavController', ['navigateForward']);
 
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       providers: [
-        { provide: Actions, useValue: actions$ },
+        { provide: Actions, useValue: actionsMock },
         { provide: NavController, useValue: navCtrlSpy },
       ],
       schemas: [NO_ERRORS_SCHEMA],
@@ -27,10 +27,6 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  afterEach(() => {
-    actions$.complete();
   });
 
   it('should create', () => {
